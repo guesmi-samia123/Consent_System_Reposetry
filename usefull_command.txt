@@ -17,7 +17,7 @@
 ./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"createConsent","03","Sara","White","ABGHGUH","Italy","WS-001","1"' 
 
 // Print all consents in the BC
-./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"getAllAssets"'
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"getAllConsents"'
 
 // Delete consent with ID "03"
 ./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"deleteConsent","03"'
