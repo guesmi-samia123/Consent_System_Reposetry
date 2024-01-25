@@ -1,0 +1,41 @@
+// Deploy smart contract
+./network.sh deployCC -ccn assetTransfer
+
+// Deploy a smart contract new version
+./network.sh deployCC -ccn assetTransfer -ccv 2 -ccs 2   
+
+// Init the SC
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"initLedger"'
+
+// Invoke  the function to retrive the consent number "01" from BC
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"getConsent","01"' 
+
+// Add a new consent
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"createConsent","02","Luke","Lucky","987654321ZZ","Nevada","WS-001","1"' 
+
+// Add a new consent
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"createConsent","03","Sara","White","ABGHGUH","Italy","WS-001","1"' 
+
+// Print all consents in the BC
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"getAllAssets"'
+
+// Delete consent with ID "03"
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"deleteConsent","03"'
+
+// check that consent "03" doesn't exist anymore
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"getConsent","03"' 
+
+
+
+
+
+//**** Verify Update Function
+
+// Create new record
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"createConsent","03","Sara","White","ABGHGUH","Italy","WS-001","1"'
+
+// Update status field from 1 to 0
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"updateConsent","03","2"'
+
+// Print the consent ID "03"
+./network.sh cc invoke -ccn assetTransfer -c q1channel -org 1 -ccic '"getConsent","03"' 
